@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { fetchCats } from '@/store/catsSlice';
 import useCatsListLogic from './CatsList.logic';
 import styles from './CatsList.module.css';
+import Cat from '@/components/Cat/Cat';
 
 const CatsList = () => {
     const dispatch = useAppDispatch();
@@ -29,9 +30,7 @@ const CatsList = () => {
       <section>
             <ul className={styles.catsList}>
                 {cats.map((cat, index) => (
-                    <li key={index}>
-                        <img src={cat.url} alt={'котик загружается'} />
-                    </li>
+                  <Cat key={index} cat={cat}/>
                 ))}
             </ul>
             <div className={styles.catsLoading}>

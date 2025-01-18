@@ -4,6 +4,7 @@ import { ICat } from '@/models/ICat'
 
 export interface CatsState {
     cats: ICat[];
+    favoriteCats: ICat[];
     isLoading: boolean;
     error: string;
     page: number;
@@ -11,6 +12,7 @@ export interface CatsState {
 
 const initialState: CatsState = {
     cats: [],
+    favoriteCats: [],
     isLoading: false,
     error: '',
     page: 1
@@ -20,7 +22,23 @@ const catsSlice = createSlice({
     name: 'cats',
     initialState,
     reducers: {
-
+        addToFavorites: (state, action: PayloadAction<ICat>) => {
+            if (state.favoriteCats.some((cat) => cat.id === action.payload.id)) {
+                return;
+            }
+            state.favoriteCats = [...state.favoriteCats, action.payload];
+            localStorage.setItem('favoriteCats', JSON.stringify(state.favoriteCats));
+        },
+        deleteFromFavorites: (state, action: PayloadAction<ICat>) => {
+            state.favoriteCats = state.favoriteCats.filter((cat) => cat.id !== action.payload.id);
+            localStorage.setItem('favoriteCats', JSON.stringify(state.favoriteCats));
+        },
+        loadFavoriteCats: (state) => {
+            const stored = localStorage.getItem('favoriteCats');
+            if (stored && stored !== "[]") {
+                state.favoriteCats = JSON.parse(stored);
+            }
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchCats.pending, (state) => {
@@ -49,3 +67,4 @@ export const fetchCats = createAsyncThunk('cats/fetchCats', async (page: number,
 })
 
 export default catsSlice.reducer;
+export const { addToFavorites, deleteFromFavorites, loadFavoriteCats } = catsSlice.actions;
