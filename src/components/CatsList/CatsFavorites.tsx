@@ -19,6 +19,9 @@ const CatsFavorites = () => {
                   <Cat key={index} cat={cat} />
                 ))}
             </ul>
+            <div className={styles.catsLoading}>
+              {favoriteCats.length === 0 && <p>здесь появляются любимые котики</p>}
+            </div>
       </section>
     )
 }

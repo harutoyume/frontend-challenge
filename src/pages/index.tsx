@@ -1,11 +1,9 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
 import CatsList from "@/components/CatsList/CatsList";
 import Nav from "@/components/Nav";
 
 
 export default function Home() {
-
 
   return (
     <>
@@ -19,8 +17,7 @@ export default function Home() {
         <header>
           <Nav />
         </header>
-        <main className={styles.main}>
-
+        <main>
           <CatsList />
         </main>
       </div>

@@ -4,8 +4,11 @@
     grid-template-columns: repeat(auto-fill, 225px);
     gap: 48px;
     justify-content: center;
+    margin-top: 64px;
     padding-top: 48px;
     padding-bottom: 48px;
+    padding-left: 62px;
+    padding-right: 62px;
 }
 
 .catsLoading {

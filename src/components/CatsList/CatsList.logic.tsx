@@ -19,6 +19,12 @@ const useCatsListLogic = () => {
   const dispatch = useAppDispatch()
   const { page, isLoading } = useAppSelector(state => state.cats)
 
+  const handleResize = useCallback(() => {
+    if (page !== 1 && !isLoading && document.documentElement.scrollHeight <= window.innerHeight) {
+      dispatch(fetchCats(page))
+    }
+  }, [page, isLoading, dispatch]);
+
   const handleScroll = useCallback(throttle(() => {
     if (isLoading) return;
     const height = document.documentElement.offsetHeight; // Высота документа
@@ -33,7 +39,7 @@ const useCatsListLogic = () => {
     }
   }, 200), [isLoading, page, dispatch]); // Ограничение вызова функции в 200 мс
 
-  return { handleScroll };
+  return { handleScroll, handleResize };
 }
 
 export default useCatsListLogic;

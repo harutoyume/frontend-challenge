@@ -10,7 +10,7 @@ const CatsList = () => {
     const { cats, page, isLoading } = useAppSelector((state) => state.cats);
     const initialFetch = useRef(false);
 
-    const { handleScroll } = useCatsListLogic();
+    const { handleScroll, handleResize } = useCatsListLogic();
 
     useEffect(() => {
         if (!initialFetch.current && page === 1 && !isLoading) {
@@ -18,6 +18,19 @@ const CatsList = () => {
           initialFetch.current = true
         }
       });
+
+      useEffect(() => {
+        if (page !== 1 && !isLoading && document.documentElement.scrollHeight <= window.innerHeight) {
+          dispatch(fetchCats(page))
+        }
+      }, [page, isLoading, dispatch]);
+
+      useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+      }, [handleResize]);
 
       useEffect(() => {
         window.addEventListener('scroll', handleScroll);
