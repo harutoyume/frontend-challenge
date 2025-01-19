@@ -34,14 +34,14 @@ const Cat = ({cat}: CatProps) => {
                 aria-label={isFavorite ? "Убрать из любимых" : "Добавить в любимые"}
             >
                 <Image
-                    src="/favorite_border.svg"
+                    src="frontend-challenge/favorite_border.svg"
                     alt=""
                     width={40}
                     height={37}
                     className={`${styles.favIcon} ${(!isFavorite && !isHovered) ? styles.favIconActive : ""}`}
                 />
                 <Image
-                    src="/favorite.svg"
+                    src="frontend-challenge/favorite.svg"
                     alt=""
                     width={40}
                     height={37}
