@@ -8,6 +8,7 @@
     height: 225px;
     object-fit: cover;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    background-color: #f0f0f0;
 }
 
 .cat:hover .catImg{

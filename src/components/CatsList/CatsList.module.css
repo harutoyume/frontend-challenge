@@ -16,4 +16,25 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+    color: #000;
+    animation: text-loading 4s infinite;
+}
+
+.catsSoon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+@keyframes text-loading {
+    0% {
+        color: #000;
+    }
+    50% {
+        color: #f0f0f0;
+    }
+    100% {
+        color: #000;
+    }
 }
